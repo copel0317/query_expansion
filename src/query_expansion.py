@@ -5,11 +5,11 @@ from elasticsearch_dsl import Search, Q
 
 
 def get_expanded_query_w2v(model, q0, k=3):
-    """ Esta función devuelve los términos expandidos
-    respecto a q0 utilizando el modelo de Word2Vec,
-    y devuelve una lista de listas con estos términos.
-    Cada lista de la lista contiene una palabra de q0
-    junto con las k palabras más similares de dicha palabra.
+    """ 이 함수는 확장된 용어를 반환한다.
+    Word2Vec 모델을 사용해서 q0을 비교했을 때,
+    이 용어들의 목록을 되돌려 줍니다.
+    목록의 각 목록에는 q0의 단어가 포함되어 있습니다.
+    그 단어의 가장 비슷한 단어와 함께 말이죠.
     """
     qe = []
     for word in q0.split(' '):
@@ -20,8 +20,8 @@ def get_expanded_query_w2v(model, q0, k=3):
 
 
 def get_expanded_query_glove(model, q0, k=3):
-    """ Esta función devuelve los términos expandidos
-    respecto a q0 utilizando el modelo de Glove.
+    """ 이 함수는 확장된 용어를 반환한다.
+    q0에 비해서 말이죠.
     """
     qe = []
     for word in q0.split(' '):
@@ -33,9 +33,9 @@ def get_expanded_query_glove(model, q0, k=3):
 
 
 def get_elasticsearch_result(terms, client, index, num_results=10):
-    """ Función que realiza una consulta a ElasticSearch sobre los
-    términos 'terms' utilizando el cliente e index dados y devuelve
-    uan lista con 'num_result' tweets tras aplicar la consulta.
+    """ Elastic Search에 문의하는 기능
+    고객을 이용한 'terms'와 색인화하여 반환하는 용어
+    상담을 신청하고 트윗을 달았습니다.
     """
     queries = []
     for term in terms:
@@ -47,9 +47,9 @@ def get_elasticsearch_result(terms, client, index, num_results=10):
 
 
 def show_most_improved_tweet(original_tweets, expanded_tweets):
-    """ Función que muestra por pantalla el tweet que más puestos
-    subió en los resultados de ElasticSearch. Compara los tweets
-    obtenidos al expandir la consulta con los tweets originales.
+    """ 가장 많이 게시된 트윗을 화면별로 보여주는 기능
+    Elastic Search의 결과에 올랐습니다. 트윗을 비교해 보세요.
+    원래의 트윗과 협의를 확장함으로써 얻은 것입니다.
     """
     most_improved = ('', -1, -1, -1)
     for i, expanded_tweet in enumerate(expanded_tweets):
@@ -60,9 +60,9 @@ def show_most_improved_tweet(original_tweets, expanded_tweets):
 
 
 def show_most_devaluated_tweet(original_tweets, expanded_tweets):
-    """ Función que muestra por pantalla el tweet que más puestos
-    descendio en los resultados de ElasticSearch. Compara los tweets
-    obtenidos al expandir la consulta con los tweets originales.
+    """ 가장 많이 게시된 트윗을 화면별로 보여주는 기능
+    Elastic Search 결과에서 하락했습니다. 트윗을 비교해 보세요.
+    원래의 트윗과 협의를 확장함으로써 얻은 것입니다.
     """
     most_devaluated = ('', -1, -1, -1)
     for i, expanded_tweet in enumerate(expanded_tweets):
